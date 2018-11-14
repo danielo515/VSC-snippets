@@ -33,6 +33,41 @@
 		],
 		"description": "Import parts of a module using destructuring"
 	},
+	// Function shortcuts
+	"arrow function with body": {
+		"prefix": "arrb",
+		"body": [
+			"($1) => {",
+			"  $2",
+			" };"
+		],
+		"description": "Arrow function with body"
+	},
+	"arrow function": {
+		"prefix": "arr",
+		"body": [
+			"($1) => $2"
+		],
+		"description": "Arrow function without body"
+	},
+	"arrow function double": {
+		"prefix": "arr2",
+		"body": [
+			"($1) => ($2) => $3"
+		],
+		"description": "Arrow function without body and two arguments"
+	},
+	// == Require shortcuts
+	// Cli/File shortcuts
+	"promisified fs": {
+		"prefix": "fsp",
+		"body": [
+			"const { readdir, writeFile: _writeFile, readFile: _readFile } = require('fs');",
+			"const { promisify } = require('util');",
+			"const writeFile = promisify(_writeFile);",
+			"const readDir = promisify(readdir);"
+		]
+	},
 	"varstr": {
 		"prefix": "varstr",
 		"body": [
@@ -40,6 +75,7 @@
 		],
 		"description": "Create a variable inside a template string"
 	},
+	// FRONTEND RELATED STUFF
 	"native-import": {
 		"prefix": "native",
 		"body": [
@@ -47,9 +83,7 @@
 			"import { Text } from \"react-native\";"
 		],
 		"description": "Imports for react native"
-	}
-	// FRONTEND RELATED STUFF
-	,
+	},
 	"react prop": {
 		"prefix": "reprop",
 		"body": "$1={$2}"
