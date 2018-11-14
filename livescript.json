@@ -1,0 +1,47 @@
+{
+	"jsdoc-comment": {
+		"prefix": "jsdoc",
+		"body": [
+			"/**",
+			" * @function $11",
+			" * @param  {$1} $2 $3",
+			" * @param  {$4} $5 $6",
+			" * @return {$7} $8",
+			" * @memberOf $9#",
+			" * @sig $12 -> $13 -> $14",
+			" * @category $15",
+			" * @description ",
+			" * $10",
+			" * ",
+			" * ",
+			" * ",
+			" * @example",
+			" * ",
+			" * ",
+			" * ",
+			" * ",
+			" * ",
+			" */"
+		],
+		"description": "Functional JSDOC comment"
+	},
+	"sanfu-module": {
+		"prefix": "module",
+		"body": [
+			"import sanctuary: { prop }",
+			"import \\sanctuary-def : $",
+			"import \\./define : definitors",
+			"",
+			"{ def, a, b } = definitors $",
+			"",
+			"$1 = ($2,$3) ->",
+			"    $4",
+			"",
+			"FN = $.Function [a, b]",
+			"definition = def \\sanfu/$1 {} [FN, ($.StrMap FN), $.String, $.Object, b ] $1",
+			"",
+			"export {definition, $1}"
+		],
+		"description": "Creates a new sanfu module file"
+	}
+}

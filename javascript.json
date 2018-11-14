@@ -1,0 +1,61 @@
+{
+	"Ejs variable": {
+		"prefix": "ejv",
+		"body": "<%= $1 %>",
+		"description": "create a ejs variable for use in yeoman"
+	},
+	"Tiddlywiki5 javascript header": {
+		"prefix": "tw5-js-header",
+		"body": [
+			"/*\\",
+			"title: $:/plugins/danielo515/$1/$2",
+			"type: application/javascript",
+			"module-type: library",
+			"$3",
+			"\n@preserve",
+			"\n\\*/"
+		],
+		"description": "description"
+	},
+	"destructure import": {
+		"prefix": "reqdestr",
+		"body": [
+			"const { $2 } = require('$1');"
+		],
+		"description": "Import parts of a module using destructuring"
+	},
+	"Module exporting an arrow function": {
+		"prefix": "exportsarr",
+		"body": [
+			"module.exports = ($1) => {",
+			"  $2",
+			" };"
+		],
+		"description": "Import parts of a module using destructuring"
+	},
+	"varstr": {
+		"prefix": "varstr",
+		"body": [
+			"\\${$1}"
+		],
+		"description": "Create a variable inside a template string"
+	},
+	"native-import": {
+		"prefix": "native",
+		"body": [
+			"import React from \"react\";",
+			"import { Text } from \"react-native\";"
+		],
+		"description": "Imports for react native"
+	}
+	// FRONTEND RELATED STUFF
+	,
+	"react prop": {
+		"prefix": "reprop",
+		"body": "$1={$2}"
+	},
+	"react same prop": {
+		"prefix": "resprop",
+		"body": "$1={$1}"
+	}
+}
