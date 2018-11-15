@@ -1,8 +1,8 @@
 {
 	/*
-	// Place your snippets for JavaScript React (Babel) here. Each snippet is defined under a snippet name and has a prefix, body and 
+	// Place your snippets for JavaScript React (Babel) here. Each snippet is defined under a snippet name and has a prefix, body and
 	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
-	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the
 	// same ids are connected.
 	// Example:
 	"Print to console": {
@@ -23,5 +23,15 @@
 		"body": "import React from 'react';\nimport { Text, $1 } from 'react-native';",
 		"prefix": "native",
 		"description": "React native imports"
+	},
+	"replace word with a tag": {
+		"body": "<$TM_CURRENT_WORD ></$TM_CURRENT_WORD>",
+		"description": "transforms the curret word into an HTML tag",
+		"prefix": "tagrep"
+	},
+	"create a normal tag": {
+		"body": "<${1|div,span,head,body,li,ul,ol,Text,View|} >$0</$1>",
+		"description": "transforms the curret word into an HTML tag",
+		"prefix": "tag"
 	}
 }

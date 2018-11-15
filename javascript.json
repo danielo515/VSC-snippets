@@ -33,6 +33,13 @@
 		],
 		"description": "Import parts of a module using destructuring"
 	},
+	"destructure const": {
+		"prefix": "constd",
+		"body": [
+			"const { $1 } = $2"
+		],
+		"description": "Declare a constant with destructuring"
+	},
 	// Function shortcuts
 	"arrow function with body": {
 		"prefix": "arrb",
@@ -88,8 +95,24 @@
 		"prefix": "reprop",
 		"body": "$1={$2}"
 	},
+	"react arrow function prop": {
+		"prefix": "propf",
+		"body": "$1 ={ $2 => $3}",
+		"description": "react property with an arrow function"
+	},
 	"react same prop": {
 		"prefix": "resprop",
 		"body": "$1={$1}"
 	}
+	// REDUX
+	,
+	"redux": {
+		"prefix": "rxcase",
+		"body": [
+			"case $ACTION_NAME: return {",
+			"\t...state,",
+			"\t$property: action.payload"
+		}
+	]
+}
 }
