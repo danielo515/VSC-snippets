@@ -20,7 +20,7 @@
 	"destructure import": {
 		"prefix": "reqdestr",
 		"body": [
-			"const { $2 } = require('$1');"
+			"const { $0 } = require('$1');"
 		],
 		"description": "Import parts of a module using destructuring"
 	},
@@ -28,7 +28,7 @@
 		"prefix": "exportsarr",
 		"body": [
 			"module.exports = ($1) => {",
-			"  $2",
+			"  $0",
 			" };"
 		],
 		"description": "Import parts of a module using destructuring"
@@ -36,7 +36,7 @@
 	"destructure const": {
 		"prefix": "constd",
 		"body": [
-			"const { $1 } = $2"
+			"const { $1 } = $0"
 		],
 		"description": "Declare a constant with destructuring"
 	},
@@ -45,22 +45,38 @@
 		"prefix": "arrb",
 		"body": [
 			"($1) => {",
-			"  $2",
+			"  $0",
 			" };"
 		],
 		"description": "Arrow function with body"
 	},
+	"arrow function declaration with body": {
+		"prefix": "arrdb",
+		"body": [
+			"const $1 = ($2) => ","{",
+			"  $0",
+			" };"
+		],
+		"description": "Arrow function declaration with body"
+	},
+	"arrow function declaration": {
+		"prefix": "arrd",
+		"body": [
+			"const $1 = ($2) => $0"
+		],
+		"description": "Arrow function declaration without body"
+	},
 	"arrow function": {
 		"prefix": "arr",
 		"body": [
-			"($1) => $2"
+			"($1) => $0"
 		],
 		"description": "Arrow function without body"
 	},
 	"arrow function double": {
 		"prefix": "arr2",
 		"body": [
-			"($1) => ($2) => $3"
+			"($1) => ($2) => $0"
 		],
 		"description": "Arrow function without body and two arguments"
 	},
@@ -104,15 +120,85 @@
 		"prefix": "resprop",
 		"body": "$1={$1}"
 	}
+	,	"create a normal tag": {
+			"body": "<$1 $2>$0</$1>",
+			"description": "basic tag template",
+			"prefix": "tag"
+		}
 	// REDUX
 	,
-	"redux": {
+	"redux switch case": {
 		"prefix": "rxcase",
 		"body": [
 			"case $ACTION_NAME: return {",
 			"\t...state,",
 			"\t$property: action.payload"
-		}
-	]
+		],
+	},
+	"redux const action": {
+		"prefix": "rxac",
+		"body": [
+			"export const $ACTION_NAME = `\\${prefix} $ACTION_NAME`;$0"
+		],
+	},
+	// Material UI
+	"material ui with styles": {
+		"prefix": "mui-wstyles",
+		"body": [
+			"import { withStyles } from '@material-ui/core/styles';",
+			"",
+			"const styles = theme => ({",
+			"    root: {",
+			"        display: 'flex',",
+			"        flexDirection: 'column',",
+			"        alignItems: 'center',",
+			"    }",
+			"})",
+			"export default withStyles(styles)(${1:${TM_FILENAME_BASE}});",
+		],
+		"description": "Isert material ui with styles declarations"
+	},
+	"material ui functional component": {
+		"prefix": "mui-func-comp",
+		"body": [
+			"import React from 'react';",
+			"import PropTypes from 'prop-types';",
+			"import Typography from '@material-ui/core/Typography';",
+			"import CircularProgress from '@material-ui/core/CircularProgress';",
+			"import { withStyles } from '@material-ui/core/styles';",
+			"",
+			"const styles = theme => ({",
+			"    root: {",
+			"        display: 'flex',",
+			"        flexDirection: 'column',",
+			"        alignItems: 'center',",
+			"    }",
+			"})",
+			"",
+			"",
+			"const ${1:${TM_FILENAME_BASE}} = props => {",
+			"    return (",
+			"        <div className={props.classes.root}>",
+			"            <CircularProgress size={50} color='primary' />",
+			"            <Typography",
+			"                variant='h6'",
+			"                align='center'",
+			"                color='textSecondary'",
+			"                paragraph",
+			"            >",
+			"                {props.message}",
+			"            </Typography>",
+			"        </div>",
+			"    );",
+			"};",
+			"",
+			"${1:${TM_FILENAME_BASE}}.propTypes = {",
+			"    message: PropTypes.string,",
+			"};",
+			"",
+			"export default withStyles(styles)(${1:${TM_FILENAME_BASE}});",
+		],
+		"description": "Material ui functional component"
+	}
 }
 }
