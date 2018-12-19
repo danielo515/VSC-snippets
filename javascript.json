@@ -46,7 +46,7 @@
 		"body": [
 			"($1) => {",
 			"  $0",
-			" };"
+			" }"
 		],
 		"description": "Arrow function with body"
 	},
@@ -55,7 +55,7 @@
 		"body": [
 			"const $1 = ($2) => ","{",
 			"  $0",
-			" };"
+			" }"
 		],
 		"description": "Arrow function declaration with body"
 	},
