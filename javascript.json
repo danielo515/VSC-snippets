@@ -1,218 +1,199 @@
 {
-	"Ejs variable": {
-		"prefix": "ejv",
-		"body": "<%= $1 %>",
-		"description": "create a ejs variable for use in yeoman"
-	},
-	"Tiddlywiki5 javascript header": {
-		"prefix": "tw5-js-header",
-		"body": [
-			"/*\\",
-			"title: $:/plugins/danielo515/$1/$2",
-			"type: application/javascript",
-			"module-type: library",
-			"$3",
-			"\n@preserve",
-			"\n\\*/"
-		],
-		"description": "description"
-	},
-	"destructure import": {
-		"prefix": "reqdestr",
-		"body": [
-			"const { $0 } = require('$1');"
-		],
-		"description": "Import parts of a module using destructuring"
-	},
-	"Module exporting an arrow function": {
-		"prefix": "exportsarr",
-		"body": [
-			"module.exports = ($1) => {",
-			"  $0",
-			" };"
-		],
-		"description": "Import parts of a module using destructuring"
-	},
-	"destructure const": {
-		"prefix": "constd",
-		"body": [
-			"const { $1 } = $0"
-		],
-		"description": "Declare a constant with destructuring"
-	},
-	// Function shortcuts
-	"arrow function with body": {
-		"prefix": "arrb",
-		"body": [
-			"($1) => {",
-			"  $0",
-			" }"
-		],
-		"description": "Arrow function with body"
-	},
-	"arrow function declaration with body": {
-		"prefix": "arrdb",
-		"body": [
-			"const $1 = ($2) => ","{",
-			"  $0",
-			" }"
-		],
-		"description": "Arrow function declaration with body"
-	},
-	"arrow function declaration": {
-		"prefix": "arrd",
-		"body": [
-			"const $1 = ($2) => $0"
-		],
-		"description": "Arrow function declaration without body"
-	},
-	"arrow function": {
-		"prefix": "arr",
-		"body": [
-			"($1) => $0"
-		],
-		"description": "Arrow function without body"
-	},
-	"arrow function double": {
-		"prefix": "arr2",
-		"body": [
-			"($1) => ($2) => $0"
-		],
-		"description": "Arrow function without body and two arguments"
-	},
-	// == Require shortcuts
-	// Cli/File shortcuts
-	"promisified fs": {
-		"prefix": "fsp",
-		"body": [
-			"const { readdir, writeFile: _writeFile, readFile: _readFile } = require('fs');",
-			"const { promisify } = require('util');",
-			"const writeFile = promisify(_writeFile);",
-			"const readDir = promisify(readdir);"
-		]
-	},
-	"varstr": {
-		"prefix": "varstr",
-		"body": [
-			"\\${$1}"
-		],
-		"description": "Create a variable inside a template string"
-	},
-	// FRONTEND RELATED STUFF
-	"native-import": {
-		"prefix": "native",
-		"body": [
-			"import React from \"react\";",
-			"import { Text } from \"react-native\";"
-		],
-		"description": "Imports for react native"
-	},
-	"react prop": {
-		"prefix": "reprop",
-		"body": "$1={$2}"
-	},
-	"react arrow function prop": {
-		"prefix": "propf",
-		"body": "$1 ={ $2 => $3}",
-		"description": "react property with an arrow function"
-	},
-	"react same prop": {
-		"prefix": "resprop",
-		"body": "$1={$1}"
-	}
-	,	"create a normal tag": {
-			"body": "<$1 $2>$0</$1>",
-			"description": "basic tag template",
-			"prefix": "tag"
-		}
-	// REDUX
-	,
-	"redux store": {
-		"prefix": "rxstore",
-		"body": [
-		"import { createStore, combineReducers } from 'redux'; ",
-		"import $reducer from './$reducer'; ",
-		" ",
-		"const rootReducer = combineReducers({ ",
-		"  $reducer ",
-		"}); ",
-		" ",
-		"export default () => createStore(rootReducer, {}); ",
-
-		],
-	},
-	"redux switch case": {
-		"prefix": "rxcase",
-		"body": [
-			"case $ACTION_NAME: return {",
-			"\t...state,",
-			"\t$property: action.payload"
-		],
-	},
-	"redux const action": {
-		"prefix": "rxac",
-		"body": [
-			"export const $ACTION_NAME = `\\${prefix} $ACTION_NAME`;$0"
-		],
-	},
-	// Material UI
-	"material ui with styles": {
-		"prefix": "mui-wstyles",
-		"body": [
-			"import { withStyles } from '@material-ui/core/styles';",
-			"",
-			"const styles = theme => ({",
-			"    root: {",
-			"        display: 'flex',",
-			"        flexDirection: 'column',",
-			"        alignItems: 'center',",
-			"    }",
-			"})",
-			"export default withStyles(styles)(${1:${TM_FILENAME_BASE}});",
-		],
-		"description": "Isert material ui with styles declarations"
-	},
-	"material ui functional component": {
-		"prefix": "mui-func-comp",
-		"body": [
-			"import React from 'react';",
-			"import PropTypes from 'prop-types';",
-			"import Typography from '@material-ui/core/Typography';",
-			"import CircularProgress from '@material-ui/core/CircularProgress';",
-			"import { withStyles } from '@material-ui/core/styles';",
-			"",
-			"const styles = theme => ({",
-			"    root: {",
-			"        display: 'flex',",
-			"        flexDirection: 'column',",
-			"        alignItems: 'center',",
-			"    }",
-			"})",
-			"",
-			"",
-			"const ${1:${TM_FILENAME_BASE}} = props => {",
-			"    return (",
-			"        <div className={props.classes.root}>",
-			"            <CircularProgress size={50} color='primary' />",
-			"            <Typography",
-			"                variant='h6'",
-			"                align='center'",
-			"                color='textSecondary'",
-			"                paragraph",
-			"            >",
-			"                {props.message}",
-			"            </Typography>",
-			"        </div>",
-			"    );",
-			"};",
-			"",
-			"${1:${TM_FILENAME_BASE}}.propTypes = {",
-			"    message: PropTypes.string,",
-			"};",
-			"",
-			"export default withStyles(styles)(${1:${TM_FILENAME_BASE}});",
-		],
-		"description": "Material ui functional component"
-	}
-}
+  "Ejs variable": {
+    "prefix": "ejv",
+    "body": "<%= $1 %>",
+    "description": "create a ejs variable for use in yeoman"
+  },
+  "Tiddlywiki5 javascript header": {
+    "prefix": "tw5-js-header",
+    "body": [
+      "/*\\",
+      "title: $:/plugins/danielo515/$1/$2",
+      "type: application/javascript",
+      "module-type: library",
+      "$3",
+      "\n@preserve",
+      "\n\\*/"
+    ],
+    "description": "description"
+  },
+  "destructure import": {
+    "prefix": "reqdestr",
+    "body": ["const { $0 } = require('$1');"],
+    "description": "Import parts of a module using destructuring"
+  },
+  "Module exporting an arrow function": {
+    "prefix": "exportsarr",
+    "body": ["module.exports = ($1) => {", "  $0", " };"],
+    "description": "Import parts of a module using destructuring"
+  },
+  "destructure const": {
+    "prefix": "constd",
+    "body": ["const { $1 } = $0"],
+    "description": "Declare a constant with destructuring"
+  },
+  // Function shortcuts
+  "arrow function with body": {
+    "prefix": "arrb",
+    "body": ["($1) => {", "  $0", " }"],
+    "description": "Arrow function with body"
+  },
+  "arrow function declaration with body": {
+    "prefix": "arrdb",
+    "body": ["const $1 = ($2) => ", "{", "  $0", " }"],
+    "description": "Arrow function declaration with body"
+  },
+  "arrow function declaration": {
+    "prefix": "arrd",
+    "body": ["const $1 = ($2) => $0"],
+    "description": "Arrow function declaration without body"
+  },
+  "arrow function": {
+    "prefix": "arr",
+    "body": ["($1) => $0"],
+    "description": "Arrow function without body"
+  },
+  "arrow function double": {
+    "prefix": "arr2",
+    "body": ["($1) => ($2) => $0"],
+    "description": "Arrow function without body and two arguments"
+  },
+  // == Require shortcuts
+  // Cli/File shortcuts
+  "promisified fs": {
+    "prefix": "fsp",
+    "body": [
+      "const { readdir, writeFile: _writeFile, readFile: _readFile } = require('fs');",
+      "const { promisify } = require('util');",
+      "const writeFile = promisify(_writeFile);",
+      "const readDir = promisify(readdir);"
+    ]
+  },
+  "varstr": {
+    "prefix": "varstr",
+    "body": ["\\${$1}"],
+    "description": "Create a variable inside a template string"
+  },
+  // FRONTEND RELATED STUFF
+  "native-import": {
+    "prefix": "native",
+    "body": [
+      "import React from \"react\";",
+      "import { Text } from \"react-native\";"
+    ],
+    "description": "Imports for react native"
+  },
+  "react prop": {
+    "prefix": "reprop",
+    "body": "$1={$2}"
+  },
+  "react arrow function prop": {
+    "prefix": "propf",
+    "body": "$1 ={ $2 => $3}",
+    "description": "react property with an arrow function"
+  },
+  "react same prop": {
+    "prefix": "resprop",
+    "body": "$1={$1}"
+  },
+  "create a normal tag": {
+    "body": "<$1 $2>$0</$1>",
+    "description": "basic tag template",
+    "prefix": "tag"
+  },
+  // REDUX
+  "redux store": {
+    "prefix": "rxstore",
+    "body": [
+      "import { createStore, combineReducers } from 'redux'; ",
+      "import $reducer from './$reducer'; ",
+      " ",
+      "const rootReducer = combineReducers({ ",
+      "  $reducer ",
+      "}); ",
+      " ",
+      "export default () => createStore(rootReducer, {}); "
+    ]
+  },
+  "redux switch case": {
+    "prefix": "rxcase",
+    "body": [
+      "case $ACTION_NAME: return {",
+      "\t...state,",
+      "\t$property: action.payload"
+    ]
+  },
+  "redux const action": {
+    "prefix": "rxac",
+    "body": ["export const $ACTION_NAME = `\\${prefix} $ACTION_NAME`;$0"]
+  },
+  // Material UI
+  "Import material ui button": {
+    "prefix": "mui-impbutt",
+    "body": "import Button from '@material-ui/core/Button';",
+    "description": "material ui import button statement"
+  },
+  "Import material ui Dialog title": {
+    "prefix": "mui-impditi",
+    "body": "import DialogTitle from '@material-ui/core/DialogTitle';",
+    "description": "material ui import dialog title statement"
+  },
+  "material ui with styles": {
+    "prefix": "mui-wstyles",
+    "body": [
+      "import { withStyles } from '@material-ui/core/styles';",
+      "",
+      "const styles = theme => ({",
+      "    root: {",
+      "        display: 'flex',",
+      "        flexDirection: 'column',",
+      "        alignItems: 'center',",
+      "    }",
+      "})",
+      "export default withStyles(styles)(${1:${TM_FILENAME_BASE}});"
+    ],
+    "description": "Isert material ui with styles declarations"
+  },
+  "material ui functional component": {
+    "prefix": "mui-func-comp",
+    "body": [
+      "import React from 'react';",
+      "import PropTypes from 'prop-types';",
+      "import Typography from '@material-ui/core/Typography';",
+      "import CircularProgress from '@material-ui/core/CircularProgress';",
+      "import { withStyles } from '@material-ui/core/styles';",
+      "",
+      "const styles = theme => ({",
+      "    root: {",
+      "        display: 'flex',",
+      "        flexDirection: 'column',",
+      "        alignItems: 'center',",
+      "    }",
+      "})",
+      "",
+      "",
+      "const ${1:${TM_FILENAME_BASE}} = props => {",
+      "    return (",
+      "        <div className={props.classes.root}>",
+      "            <CircularProgress size={50} color='primary' />",
+      "            <Typography",
+      "                variant='h6'",
+      "                align='center'",
+      "                color='textSecondary'",
+      "                paragraph",
+      "            >",
+      "                {props.message}",
+      "            </Typography>",
+      "        </div>",
+      "    );",
+      "};",
+      "",
+      "${1:${TM_FILENAME_BASE}}.propTypes = {",
+      "    message: PropTypes.string,",
+      "};",
+      "",
+      "export default withStyles(styles)(${1:${TM_FILENAME_BASE}});"
+    ],
+    "description": "Material ui functional component"
+  }
 }
