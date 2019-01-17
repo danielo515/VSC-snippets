@@ -75,6 +75,13 @@
     "description": "Create a variable inside a template string"
   },
   // FRONTEND RELATED STUFF
+  //  REACT
+  "proptypes current component":{
+    "prefix": "ptcom",
+    "body": [
+      "${1:${TM_FILENAME_BASE}.propTypes={","$0","}"
+    ]
+  },
   "native-import": {
     "prefix": "native",
     "body": [
