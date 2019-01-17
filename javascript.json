@@ -101,6 +101,17 @@
     "description": "basic tag template",
     "prefix": "tag"
   },
+
+  "div-class": {
+		"prefix": "div-class",
+		"description": "A react div with classname",
+		"body": "<div className={Css['$1']}>$2</div>"
+	},
+	"replace word with a tag": {
+		"body": "<$TM_CURRENT_WORD ></$TM_CURRENT_WORD>",
+		"description": "transforms the curret word into an HTML tag",
+		"prefix": "tagrep"
+	},
   // REDUX
   "redux store": {
     "prefix": "rxstore",
