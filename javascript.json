@@ -58,6 +58,14 @@
     "body": ["($1) => ($2) => $0"],
     "description": "Arrow function without body and two arguments"
   },
+  "index by helper": {
+    "prefix": "indxby",
+    "body": "const indexBy = key => (acc, o) => (acc[o[key]] = o, acc);"
+  },
+  "collect at helper": {
+    "prefix": "collectat",
+    "body": "const collectAt = key => (acc, o) => (acc[key].push(o), acc);"
+  },
   // == Require shortcuts
   // Cli/File shortcuts
   "promisified fs": {
