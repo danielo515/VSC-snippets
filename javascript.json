@@ -154,6 +154,11 @@
     "body": ["export const $ACTION_NAME = `\\${prefix} $ACTION_NAME`;$0"]
   },
   // Material UI
+  "Import material ui core component": {
+    "prefix": "mui-imp",
+    "body": "import $1 from '@material-ui/core/$1",
+    "description": "A regular material ui import from core"
+  },
   "Import material ui button": {
     "prefix": "mui-impbutt",
     "body": "import Button from '@material-ui/core/Button';",
@@ -186,7 +191,6 @@
       "import React from 'react';",
       "import PropTypes from 'prop-types';",
       "import Typography from '@material-ui/core/Typography';",
-      "import CircularProgress from '@material-ui/core/CircularProgress';",
       "import { withStyles } from '@material-ui/core/styles';",
       "",
       "const styles = theme => ({",
@@ -201,7 +205,6 @@
       "const ${1:${TM_FILENAME_BASE}} = props => {",
       "    return (",
       "        <div className={props.classes.root}>",
-      "            <CircularProgress size={50} color='primary' />",
       "            <Typography",
       "                variant='h6'",
       "                align='center'",
