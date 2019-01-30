@@ -156,7 +156,7 @@
   // Material UI
   "Import material ui core component": {
     "prefix": "mui-imp",
-    "body": "import $1 from '@material-ui/core/$1",
+    "body": "import $1 from '@material-ui/core/$1';",
     "description": "A regular material ui import from core"
   },
   "Import material ui button": {
