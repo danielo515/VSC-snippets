@@ -27,6 +27,11 @@
     "body": ["module.exports = ($1) => {", "  $0", " };"],
     "description": "Import parts of a module using destructuring"
   },
+  "Module exports": {
+    "prefix": "mexp",
+    "body": ["module.exports = {$0};"],
+    "description": "export an object"
+  },
   "destructure const": {
     "prefix": "constd",
     "body": ["const { $1 } = $0"],
@@ -98,6 +103,15 @@
     ],
     "description": "Imports for react native"
   },
+  "defualt-props": {
+    "prefix": "defprops",
+    "description": "Default props for this component",
+    "body": [
+      "${1:${TM_FILENAME_BASE}}.defaultProps = {",
+        "    message: 'hello',",
+        "};",
+    ]
+  },
   "react prop": {
     "prefix": "reprop",
     "body": "$1={$2}"
@@ -152,6 +166,11 @@
   "redux const action": {
     "prefix": "rxac",
     "body": ["export const $ACTION_NAME = `\\${prefix} $ACTION_NAME`;$0"]
+  },
+  "redux const action_creator": {
+    "prefix": "rxacc",
+    "description": "redux action creator. The function name becomes the action type in uppercas and camelcase",
+    "body": ["const ${1} => ({ type: ${1/([a-z]*)(([A-Z])+([a-z]+))?/${1:/upcase}${2:+_}$3${4:/upcase}/g} $0});"]
   },
   // Material UI
   "Import material ui core component": {
