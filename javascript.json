@@ -71,7 +71,22 @@
     "prefix": "collectat",
     "body": "const collectAt = key => (acc, o) => (acc[key].push(o), acc);"
   },
+  // Eslint srhotcuts
+  "eslint-jest": {
+    "prefix": "esjest",
+    "body": "/* eslint-env jest */\n"
+  },
   // == Require shortcuts
+  "test-import": {
+    "prefix": "imptest",
+    "description": "imports the current file for testing",
+    "body": ["import ${TM_FILENAME_BASE/(\\..*)//} from './${TM_FILENAME_BASE/(\\..*)//}';"]
+  },
+  "test-require": {
+    "prefix": "reqtest",
+    "description": "requires the current file for testing",
+    "body": ["const ${TM_FILENAME_BASE/(\\..*)//} = require('./${TM_FILENAME_BASE/(\\..*)//}');"]
+  },
   // Cli/File shortcuts
   "promisified fs": {
     "prefix": "fsp",
