@@ -23,12 +23,12 @@
     "description": "Import parts of a module using destructuring"
   },
   "Module exporting an arrow function": {
-    "prefix": "exportsarr",
+    "prefix": "exportsfn",
     "body": ["module.exports = ($1) => {", "  $0", " };"],
-    "description": "Import parts of a module using destructuring"
+    "description": "Exports an arrow function"
   },
   "Module exports": {
-    "prefix": "mexp",
+    "prefix": "expobj",
     "body": ["module.exports = {$0};"],
     "description": "export an object"
   },
@@ -71,6 +71,11 @@
     "prefix": "collectat",
     "body": "const collectAt = key => (acc, o) => (acc[key].push(o), acc);"
   },
+  // reselect
+  "create selector": {
+    "prefix": "createSel",
+    "body": ["const $1 = createSelector($0);"]
+  },
   // Eslint srhotcuts
   "eslint-jest": {
     "prefix": "esjest",
@@ -80,12 +85,21 @@
   "test-import": {
     "prefix": "imptest",
     "description": "imports the current file for testing",
-    "body": ["import ${TM_FILENAME_BASE/(\\..*)//} from './${TM_FILENAME_BASE/(\\..*)//}';"]
+    "body": [
+      "import ${TM_FILENAME_BASE/(\\..*)//} from './${TM_FILENAME_BASE/(\\..*)//}';"
+    ]
   },
   "test-require": {
     "prefix": "reqtest",
     "description": "requires the current file for testing",
-    "body": ["const ${TM_FILENAME_BASE/(\\..*)//} = require('./${TM_FILENAME_BASE/(\\..*)//}');"]
+    "body": [
+      "const ${TM_FILENAME_BASE/(\\..*)//} = require('./${TM_FILENAME_BASE/(\\..*)//}');"
+    ]
+  },
+  "require axios": {
+    "prefix": "reqaxios",
+    "description": "require axios library",
+    "body": "const axios = require('axios');"
   },
   // Cli/File shortcuts
   "promisified fs": {
@@ -104,11 +118,14 @@
   },
   // FRONTEND RELATED STUFF
   //  REACT
-  "proptypes current component":{
+
+  "react index key": {
+    "prefix": "rkeyidx",
+    "body": "key={`$1-\\${$2}-\\${i}`}$0"
+  },
+  "proptypes current component": {
     "prefix": "ptcom",
-    "body": [
-      "${1:${TM_FILENAME_BASE}.propTypes={","$0","}"
-    ]
+    "body": ["${1:${TM_FILENAME_BASE}.propTypes={", "$0", "}"]
   },
   "native-import": {
     "prefix": "native",
@@ -123,8 +140,8 @@
     "description": "Default props for this component",
     "body": [
       "${1:${TM_FILENAME_BASE}}.defaultProps = {",
-        "    message: 'hello',",
-        "};",
+      "    message: 'hello',",
+      "};"
     ]
   },
   "react prop": {
@@ -147,15 +164,15 @@
   },
 
   "div-class": {
-		"prefix": "div-class",
-		"description": "A react div with classname",
-		"body": "<div className={Css['$1']}>$2</div>"
-	},
-	"replace word with a tag": {
-		"body": "<$TM_CURRENT_WORD ></$TM_CURRENT_WORD>",
-		"description": "transforms the curret word into an HTML tag",
-		"prefix": "tagrep"
-	},
+    "prefix": "div-class",
+    "description": "A react div with classname",
+    "body": "<div className={Css['$1']}>$2</div>"
+  },
+  "replace word with a tag": {
+    "body": "<$TM_CURRENT_WORD ></$TM_CURRENT_WORD>",
+    "description": "transforms the curret word into an HTML tag",
+    "prefix": "tagrep"
+  },
   // REDUX
   "redux store": {
     "prefix": "rxstore",
@@ -185,7 +202,9 @@
   "redux const action_creator": {
     "prefix": "rxacc",
     "description": "redux action creator. The function name becomes the action type in uppercas and camelcase",
-    "body": ["const ${1} => ({ type: ${1/([a-z]*)(([A-Z])+([a-z]+))?/${1:/upcase}${2:+_}$3${4:/upcase}/g} $0});"]
+    "body": [
+      "const ${1} => ({ type: ${1/([a-z]*)(([A-Z])+([a-z]+))?/${1:/upcase}${2:+_}$3${4:/upcase}/g} $0});"
+    ]
   },
   // Material UI
   "Import material ui core component": {
@@ -209,14 +228,14 @@
       "import { withStyles } from '@material-ui/core/styles';",
       "",
       "const styles = ({palette, spacing}) => ({",
-        "    root: {",
-        "        display: 'flex',",
-        "        flexDirection: 'column',",
-        "        alignItems: 'center',",
-        "        backgroundColor: palette.background.default",
-        "        padding: `${spacing.unit}px`",
-        "    }",
-        "})",
+      "    root: {",
+      "        display: 'flex',",
+      "        flexDirection: 'column',",
+      "        alignItems: 'center',",
+      "        backgroundColor: palette.background.default",
+      "        padding: `${spacing.unit}px`",
+      "    }",
+      "})",
       "export default withStyles(styles)(${1:${TM_FILENAME_BASE}});"
     ],
     "description": "Isert material ui with styles declarations"
