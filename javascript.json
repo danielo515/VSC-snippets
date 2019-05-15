@@ -116,6 +116,11 @@
     "body": ["\\${$1}"],
     "description": "Create a variable inside a template string"
   },
+  // Test shortcuts
+  "symbol mock": {
+    "prefix": "testSym",
+    "body": "const $1 = Symbol('$1');"
+  },
   // FRONTEND RELATED STUFF
   //  REACT
 
