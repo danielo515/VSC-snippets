@@ -121,6 +121,11 @@
     "prefix": "testSym",
     "body": "const $1 = Symbol('$1');"
   },
+  "jest this":{
+    "prefix": "jestthis",
+    "body": "const $TM_CURRENT_LINE = jest.fn($1);$0",
+    "description": "turn the following selected text into a jest mock"
+  },
   // FRONTEND RELATED STUFF
   //  REACT
 
