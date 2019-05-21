@@ -89,13 +89,6 @@
       "import ${TM_FILENAME_BASE/(\\..*)//} from './${TM_FILENAME_BASE/(\\..*)//}';"
     ]
   },
-  "test-require": {
-    "prefix": "reqtest",
-    "description": "requires the current file for testing",
-    "body": [
-      "const ${TM_FILENAME_BASE/(\\..*)//} = require('./${TM_FILENAME_BASE/(\\..*)//}');"
-    ]
-  },
   "require axios": {
     "prefix": "reqaxios",
     "description": "require axios library",
