@@ -1,4 +1,18 @@
 {
+  // Tasker-js-runnner
+  "task description": {
+    "prefix": "tskjs",
+    "body": [
+      " export const $1 = {",
+      "      enter(locals, tasker){",
+      "         $0",
+      "      },",
+      "      exit(locals, tasker){",
+      "          ",
+      "      }",
+      "  };"
+    ]
+  },
   "Ejs variable": {
     "prefix": "ejv",
     "body": "<%= $1 %>",
@@ -81,6 +95,10 @@
     "prefix": "esjest",
     "body": "/* eslint-env jest */\n"
   },
+  "ts-check": {
+    "prefix": "tsc",
+    "body": "// @ts-check\n"
+  },
   // == Require shortcuts
   "test-import": {
     "prefix": "imptest",
@@ -114,10 +132,19 @@
     "prefix": "testSym",
     "body": "const $1 = Symbol('$1');"
   },
-  "jest this":{
+  "jest this": {
     "prefix": "jestthis",
     "body": "const $TM_CURRENT_LINE = jest.fn($1);$0",
     "description": "turn the following selected text into a jest mock"
+  },
+  "expect called with symbol": {
+    "prefix": "excws",
+    "description": "Creates an expect statement for a mock function to have been called with a symbol",
+    "body":[
+    " const $1 = Symbol('$1');",
+    "    $0",
+    " expect($2).toHaveBeenCalledWith($1);"
+    ]
   },
   // FRONTEND RELATED STUFF
   //  REACT
