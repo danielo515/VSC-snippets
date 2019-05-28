@@ -48,7 +48,7 @@
   },
   "destructure const": {
     "prefix": "constd",
-    "body": ["const { $1 } = $0"],
+    "body": ["const { $0 } = $1"],
     "description": "Declare a constant with destructuring"
   },
   // Function shortcuts
@@ -84,6 +84,21 @@
   "collect at helper": {
     "prefix": "collectat",
     "body": "const collectAt = key => (acc, o) => (acc[key].push(o), acc);"
+  },
+  "Json stringify": {
+    "prefix": "jstr",
+    "body": "JSON.stringify($0)",
+    "description": "JSON.stringify shortcut"
+  },
+  "Json stringify semicolon": {
+    "prefix": "jstr;",
+    "body": "JSON.stringify($0);",
+    "description": "JSON.stringify shortcut with semi colon"
+  },
+  "Json parse": {
+    "prefix": "jpar",
+    "body": "JSON.parse($0)",
+    "description": "JSON.parse shortcut"
   },
   // reselect
   "create selector": {
