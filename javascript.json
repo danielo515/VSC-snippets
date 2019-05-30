@@ -31,14 +31,20 @@
     ],
     "description": "description"
   },
+  // ====== JS genneric ====
   "destructure import": {
     "prefix": "reqdestr",
     "body": ["const { $0 } = require('$1');"],
     "description": "Import parts of a module using destructuring"
   },
   "Module exporting an arrow function": {
-    "prefix": "exportsfn",
-    "body": ["module.exports = ($1) => {", "  $0", " };"],
+    "prefix": "expfn",
+    "body": ["const $1 = ($2) => {", "  $0", " };","module.exports = $1"],
+    "description": "Exports an arrow function"
+  },
+  "Module with a named arrow function export": {
+    "prefix": "expnfn",
+    "body": ["const $1 = ($2) => {", "  $0", " };","module.exports.$1 = $1"],
     "description": "Exports an arrow function"
   },
   "Module exports": {
