@@ -58,6 +58,11 @@
     "description": "Declare a constant with destructuring"
   },
   // Function shortcuts
+  "console log arguments":{
+    "prefix": "tap-args",
+    "description": "a function that just console log it's arguments",
+    "body":"(...args) => console.log('$1',...args)"
+  },
   "arrow function with body": {
     "prefix": "arrb",
     "body": ["($1) => {", "  $0", " }"],
@@ -128,6 +133,14 @@
       "import ${TM_FILENAME_BASE/(\\..*)//} from './${TM_FILENAME_BASE/(\\..*)//}';"
     ]
   },
+  "dummy index": {
+    "prefix": "idx",
+    "description": "imports the current folder and exports it",
+    "body": [
+      "import ${TM_DIRECTORY/(.*\\/)//} from './${TM_DIRECTORY/(.*\\/)//}.component';\n",
+      "export default ${TM_DIRECTORY/(.*\\/)//};\n"
+    ]
+  },
   "require axios": {
     "prefix": "reqaxios",
     "description": "require axios library",
@@ -137,9 +150,10 @@
   "promisified fs": {
     "prefix": "fsp",
     "body": [
-      "const { readdir, writeFile: _writeFile, readFile: _readFile } = require('fs');",
+      "const { rename: rn, readdir, writeFile: _writeFile, readFile: _readFile } = require('fs');",
       "const { promisify } = require('util');",
       "const writeFile = promisify(_writeFile);",
+      "const rename = promisify(rn);",
       "const readDir = promisify(readdir);"
     ]
   },
