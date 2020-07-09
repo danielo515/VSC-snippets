@@ -34,58 +34,101 @@
   // ====== JS genneric ====
   "destructure import": {
     "prefix": "reqdestr",
-    "body": ["const { $0 } = require('$1');"],
+    "body": [
+      "const { $0 } = require('$1');"
+    ],
     "description": "Import parts of a module using destructuring"
   },
   "Module exporting an arrow function": {
     "prefix": "expfn",
-    "body": ["const $1 = ($2) => {", "  $0", " };","module.exports = $1"],
+    "body": [
+      "const $1 = ($2) => {",
+      "  $0",
+      " };",
+      "module.exports = $1"
+    ],
     "description": "Exports an arrow function"
   },
   "Module with a named arrow function export": {
     "prefix": "expnfn",
-    "body": ["const $1 = ($2) => {", "  $0", " };","module.exports.$1 = $1"],
+    "body": [
+      "const $1 = ($2) => {",
+      "  $0",
+      " };",
+      "module.exports.$1 = $1"
+    ],
     "description": "Exports an arrow function"
   },
   "Module exports": {
     "prefix": "expobj",
-    "body": ["module.exports = {$0};"],
+    "body": [
+      "module.exports = {$0};"
+    ],
     "description": "export an object"
   },
   "destructure const": {
     "prefix": "constd",
-    "body": ["const { $0 } = $1"],
+    "body": [
+      "const { $0 } = $1"
+    ],
     "description": "Declare a constant with destructuring"
   },
+  "conditional props": {
+    "prefix": "condprops",
+    "body": [
+      "...($1 ? {$2}:{$3})"
+    ],
+    "description": "Ternary based object properties"
+  },
   // Function shortcuts
-  "console log arguments":{
+  "console log arguments": {
     "prefix": "tap-args",
     "description": "a function that just console log it's arguments",
-    "body":"(...args) => console.log('$1',...args)"
+    "body": "(...args) => console.log('$1',...args)"
+  },
+  "console log arguments": {
+    "prefix": "tap",
+    "description": "a function that just console log it's arguments",
+    "body": "(${x}) => console.log('$1',${x}) || ${x}"
   },
   "arrow function with body": {
     "prefix": "arrb",
-    "body": ["($1) => {", "  $0", " }"],
+    "body": [
+      "($1) => {",
+      "  $0",
+      " }"
+    ],
     "description": "Arrow function with body"
   },
   "arrow function declaration with body": {
     "prefix": "arrdb",
-    "body": ["const $1 = ($2) => ", "{", "  $0", " }"],
+    "body": [
+      "const $1 = ($2) => ",
+      "{",
+      "  $0",
+      " }"
+    ],
     "description": "Arrow function declaration with body"
   },
   "arrow function declaration": {
     "prefix": "arrd",
-    "body": ["const $1 = ($2) => $0"],
+    "body": [
+      "const $1 = ($2) => $0"
+    ],
     "description": "Arrow function declaration without body"
   },
   "arrow function": {
     "prefix": "arr",
-    "body": ["($1) => $0"],
+    "body": [
+      "($1) => $0"
+    ],
     "description": "Arrow function without body"
   },
   "arrow function double": {
     "prefix": "arr2",
-    "body": ["($1) => ($2) => $0"],
+    "body": [
+      "($1) => ($2) => $0"
+    ],
     "description": "Arrow function without body and two arguments"
   },
   "index by helper": {
@@ -114,7 +157,9 @@
   // reselect
   "create selector": {
     "prefix": "createSel",
-    "body": ["const $1 = createSelector($0);"]
+    "body": [
+      "const $1 = createSelector($0);"
+    ]
   },
   // Eslint srhotcuts
   "eslint-jest": {
@@ -159,7 +204,9 @@
   },
   "varstr": {
     "prefix": "varstr",
-    "body": ["\\${$1}"],
+    "body": [
+      "\\${$1}"
+    ],
     "description": "Create a variable inside a template string"
   },
   // Test shortcuts
@@ -175,22 +222,34 @@
   "expect called with symbol": {
     "prefix": "excws",
     "description": "Creates an expect statement for a mock function to have been called with a symbol",
-    "body":[
-    " const $1 = Symbol('$1');",
-    "    $0",
-    " expect($2).toHaveBeenCalledWith($1);"
+    "body": [
+      " const $1 = Symbol('$1');",
+      "    $0",
+      " expect($2).toHaveBeenCalledWith($1);"
     ]
   },
   // FRONTEND RELATED STUFF
   //  REACT
-
+  "Styled component": {
+    "prefix": "stc",
+    "description": "Adds a basic styled component",
+    "body": [
+      "styled.$1`",
+      "   $0:",
+      " `;"
+    ]
+  },
   "react index key": {
     "prefix": "rkeyidx",
     "body": "key={`$1-\\${$2}-\\${i}`}$0"
   },
   "proptypes current component": {
     "prefix": "ptcom",
-    "body": ["${1:${TM_FILENAME_BASE}.propTypes={", "$0", "}"]
+    "body": [
+      "${1:${TM_FILENAME_BASE}.propTypes={",
+      "$0",
+      "}"
+    ]
   },
   "native-import": {
     "prefix": "native",
@@ -227,7 +286,6 @@
     "description": "basic tag template",
     "prefix": "tag"
   },
-
   "div-class": {
     "prefix": "div-class",
     "description": "A react div with classname",
@@ -262,7 +320,16 @@
   },
   "redux const action": {
     "prefix": "rxac",
-    "body": ["export const $ACTION_NAME = `\\${prefix} $ACTION_NAME`;$0"]
+    "body": [
+      "export const $ACTION_NAME = `\\${prefix} $ACTION_NAME`;$0"
+    ]
+  },
+  "redux const action_creator": {
+    "prefix": "rxacc",
+    "description": "redux action creator. The function name becomes the action type in uppercas and camelcase",
+    "body": [
+      "const ${1} => ({ type: ${1/([a-z]*)(([A-Z])+([a-z]+))?/${1:/upcase}${2:+_}$3${4:/upcase}/g} $0});"
+    ]
   },
   "redux const action_creator": {
     "prefix": "rxacc",
