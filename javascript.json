@@ -59,6 +59,15 @@
     ],
     "description": "Exports an arrow function"
   },
+  "export regular function": {
+    "prefix": "exfn",
+    "body": [
+      "export function ${name}(${args}){",
+      "  $0",
+      " };",
+    ],
+    "description": "Export named function (old style)"
+  },
   "Module exports": {
     "prefix": "expobj",
     "body": [
@@ -186,6 +195,13 @@
       "export default ${TM_DIRECTORY/(.*\\/)//};\n"
     ]
   },
+  "export default as foldername": {
+    "prefix": "ide",
+    "description": "exports the default named as the folder",
+    "body": [
+      "export { default as ${TM_DIRECTORY/(.*\\/)//}} from './${TM_DIRECTORY/(.*\\/)//}'\n"
+    ]
+  },
   "require axios": {
     "prefix": "reqaxios",
     "description": "require axios library",
@@ -230,6 +246,16 @@
   },
   // FRONTEND RELATED STUFF
   //  REACT
+  "react map component": {
+    "prefix": "mapre",
+    "body": [
+      "$1.map(({ $2, $3 }) => (",
+      "<$3 >",
+      "$0",
+      "</$>",
+      "))"
+    ]
+  },
   "Styled component": {
     "prefix": "stc",
     "description": "Adds a basic styled component",
@@ -418,5 +444,82 @@
       "export default withStyles(styles)(${1:${TM_FILENAME_BASE}});"
     ],
     "description": "Material ui functional component"
+  },
+  "import type from react": {
+    "body": "import type { $Node } from 'react'",
+    "description": "Imports a type from react",
+    "prefix": "imtr"
+  },
+  // PENTO //
+  "spring component": {
+    "description": "spring component with everything",
+    "prefix": "scomp",
+    "body": [
+      "    type ${name}Props = {",
+      "  /**",
+      "   * If further customization is needed provide a custom class name,",
+      "   * it will be applied to the root of the component as the last class,",
+      "   * giving it the greatest precedence",
+      "   */",
+      "  className?: string,",
+      "}",
+      "",
+      "export function ${ name }({ size, className }: ${name}Props) {",
+      "  const classes = [className].join(' ').trim()",
+      "  return <div className={classes}></div>",
+      "}",
+      "",
+      "${name}.defaultProps = {",
+      "  className: '',",
+      "}",
+      ""
+    ]
+  },
+  "spring modal": {
+    "prefix": "smodal",
+    "body": [
+      "<Modal isOpen={true}>",
+      "    <ModalHeader>",
+      "    </ModalHeader>",
+      "    <ModalFooter>",
+      "      <FormRow>",
+      "        <Button fluid>Close</Button>",
+      "      </FormRow>",
+      "    </ModalFooter>",
+      "  </Modal>\""
+    ]
+  },
+  "spring list in card": {
+    "prefix": "scardlist",
+    "body": [
+      "    <RawCard bgColor=\"grey\">",
+      "      <List>",
+      "        {values.map(({ label, value }) => (",
+      "          <ListItem>",
+      "            <span>{label}</span>",
+      "            <span>{value}</span>",
+      "          </ListItem>",
+      "        ))}",
+      "      </List>",
+      "    </RawCard>",
+    ]
+  },
+  "spring list in card import": {
+    "prefix": "ifsliscar",
+    "body": [
+      "    RawCard,",
+      "    List,",
+      "    ListItem,"
+    ]
+  },
+  "spring": {
+    "prefix": "ifs",
+    "body": "import {$0} from 'spring'"
+  },
+  /// Storybook
+  "close panel": {
+    "prefix": "stpan",
+    "description": "Do not show panel for one specifis story",
+    "body": "$0.stories = { parameters: { showPanel: false } }"
   }
 }
