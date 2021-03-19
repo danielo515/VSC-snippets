@@ -136,7 +136,7 @@
       "const $1 = createSelector($0);"
     ]
   },
-  // Eslint srhotcuts
+  // Eslint shortcuts
   "eslint-jest": {
     "prefix": "esjest",
     "body": "/* eslint-env jest */\n"
@@ -162,16 +162,11 @@
     ]
   },
   "export default as foldername": {
-    "prefix": "ide",
+    "prefix": "imde",
     "description": "exports the default named as the folder",
     "body": [
       "export { default as ${TM_DIRECTORY/(.*\\/)//}} from './${TM_DIRECTORY/(.*\\/)//}'\n"
     ]
-  },
-  "require axios": {
-    "prefix": "reqaxios",
-    "description": "require axios library",
-    "body": "const axios = require('axios');"
   },
   // Cli/File shortcuts
   "promisified fs": {
@@ -299,7 +294,7 @@
   },
   "replace word with a tag": {
     "body": "<$TM_CURRENT_WORD ></$TM_CURRENT_WORD>",
-    "description": "transforms the curret word into an HTML tag",
+    "description": "transforms the current word into an HTML tag",
     "prefix": "tagrep"
   },
   // REDUX
@@ -332,7 +327,7 @@
   },
   "redux const action_creator": {
     "prefix": "rxacc",
-    "description": "redux action creator. The function name becomes the action type in uppercas and camelcase",
+    "description": "redux action creator. The function name becomes the action type in uppercase and camelCase",
     "body": [
       "const ${1} => ({ type: ${1/([a-z]*)(([A-Z])+([a-z]+))?/${1:/upcase}${2:+_}$3${4:/upcase}/g} $0});"
     ]
@@ -369,7 +364,7 @@
       "})",
       "export default withStyles(styles)(${1:${TM_FILENAME_BASE}});"
     ],
-    "description": "Isert material ui with styles declarations"
+    "description": "Insert material ui with styles declarations"
   },
   "material ui functional component": {
     "prefix": "mui-func-comp",
@@ -434,7 +429,8 @@
   "jsdoc props": {
     "prefix": "jdprops",
     "body": [
-      "/** @typedef {Object} Props",
+      "/** ",
+      " * @typedef {Object} Props",
       " * @property {${string}} $1",
       " * @property {${number}} $2",
       " * @property {${function}} $3",
@@ -442,31 +438,26 @@
       "",
       "/** @param {Props} props **/",
     ],
-    "description": "generate jsdoc anotation for props"
-  },
-  "import type from react": {
-    "body": "import type { $Node } from 'react'",
-    "description": "Imports a type from react",
-    "prefix": "imtr"
+    "description": "generate jsdoc annotation for props"
   },
   "jsdoc type ": {
     "prefix": "jdtype",
-    "body": "/** @type { $0 }*/",
+    "body": "/** @type { $0 } */",
     "description": "Basic jsdoc type"
   },
   "jsdoc function type definition": {
     "prefix": "jdtfun",
-    "body": "/** @type { (args: $1) => $0 }*/",
+    "body": "/** @type { (args: $1) => $0 } */",
     "description": "function type cast"
   },
   "jsdoc type definition": {
     "prefix": "jdtdef",
-    "body": "/** @typedef {$1} $0*/",
+    "body": "/** @typedef {$1} $0 */",
     "description": "jsdoc type definition"
   },
   "jsdoc type definition import": {
     "prefix": "jdtdefi",
-    "body": "/** @typedef {typeof import('./$1').default} $0*/",
+    "body": "/** @typedef {typeof import('./$1').default} $0 */",
     "description": "jsdoc type definition import"
   },
   // PENTO //
@@ -560,6 +551,11 @@
     "prefix": "ityt"
   },
   // Flow
+  "import type from react": {
+    "body": "import type { $Node } from 'react'",
+    "description": "Imports a type from react",
+    "prefix": "imtr"
+  },
   "type props": {
     "prefix": "typp",
     "body": [
