@@ -18,7 +18,7 @@
     "body": "<%= $1 %>",
     "description": "create a ejs variable for use in yeoman"
   },
-  "Tiddlywiki5 javascript header": {
+  "TiddlyWiki5 javascript header": {
     "prefix": "tw5-js-header",
     "body": [
       "/*\\",
@@ -31,7 +31,7 @@
     ],
     "description": "description"
   },
-  // ====== JS genneric ====
+  // ====== JS generic ====
   "destructure import": {
     "prefix": "reqdestr",
     "body": [
@@ -90,48 +90,14 @@
     "description": "Ternary based object properties"
   },
   // Function shortcuts
-  "console log arguments": {
-    "prefix": "tap-args",
-    "description": "a function that just console log it's arguments",
-    "body": "(...args) => console.log('$1',...args)"
-  },
-  "console log arguments": {
-    "prefix": "tap",
-    "description": "a function that just console log it's arguments",
-    "body": "(${x}) => console.log('$1',${x}) || ${x}"
-  },
-  "arrow function with body": {
-    "prefix": "arrb",
+  "javascript normal function": {
+    "prefix": "fun",
     "body": [
-      "($1) => {",
-      "  $0",
-      " }"
+      "function $1($2) {",
+      "    return $0",
+      "}"
     ],
-    "description": "Arrow function with body"
-  },
-  "arrow function declaration with body": {
-    "prefix": "arrdb",
-    "body": [
-      "const $1 = ($2) => ",
-      "{",
-      "  $0",
-      " }"
-    ],
-    "description": "Arrow function declaration with body"
-  },
-  "arrow function declaration": {
-    "prefix": "arrd",
-    "body": [
-      "const $1 = ($2) => $0"
-    ],
-    "description": "Arrow function declaration without body"
-  },
-  "arrow function": {
-    "prefix": "arr",
-    "body": [
-      "($1) => $0"
-    ],
-    "description": "Arrow function without body"
+    "description": "basic javascript function"
   },
   "arrow function double": {
     "prefix": "arr2",
@@ -180,19 +146,19 @@
     "body": "// @ts-check\n"
   },
   // == Require shortcuts
-  "test-import": {
-    "prefix": "imptest",
-    "description": "imports the current file for testing",
-    "body": [
-      "import ${TM_FILENAME_BASE/(\\..*)//} from './${TM_FILENAME_BASE/(\\..*)//}';"
-    ]
-  },
   "dummy index": {
     "prefix": "idx",
     "description": "imports the current folder and exports it",
     "body": [
       "import ${TM_DIRECTORY/(.*\\/)//} from './${TM_DIRECTORY/(.*\\/)//}.component';\n",
       "export default ${TM_DIRECTORY/(.*\\/)//};\n"
+    ]
+  },
+  "import-phrases": {
+    "prefix": "imph",
+    "description": "imports phrases file for current component",
+    "body": [
+      "import phrases from './${TM_DIRECTORY/(.*\\/)//}.phrases';\n",
     ]
   },
   "export default as foldername": {
@@ -209,7 +175,7 @@
   },
   // Cli/File shortcuts
   "promisified fs": {
-    "prefix": "fsp",
+    "prefix": "imfsp",
     "body": [
       "const { rename: rn, readdir, writeFile: _writeFile, readFile: _readFile } = require('fs');",
       "const { promisify } = require('util');",
@@ -246,6 +212,20 @@
   },
   // FRONTEND RELATED STUFF
   //  REACT
+  "Async load component": {
+    "prefix": "asrc",
+    "body": [
+      "  const LoadingComponent = () => <h3>please wait...</h3>;",
+      "const ${1}Promise = () => {",
+      "  return import('../$1');",
+      "};",
+      "const Dashboard = loadable({",
+      "  loader: ${1}Promise,",
+      "  loading: LoadingComponent,",
+      "});"
+    ],
+    "description": "Async load component"
+  },
   "react map component": {
     "prefix": "mapre",
     "body": [
@@ -285,7 +265,7 @@
     ],
     "description": "Imports for react native"
   },
-  "defualt-props": {
+  "default-props": {
     "prefix": "defprops",
     "description": "Default props for this component",
     "body": [
@@ -348,13 +328,6 @@
     "prefix": "rxac",
     "body": [
       "export const $ACTION_NAME = `\\${prefix} $ACTION_NAME`;$0"
-    ]
-  },
-  "redux const action_creator": {
-    "prefix": "rxacc",
-    "description": "redux action creator. The function name becomes the action type in uppercas and camelcase",
-    "body": [
-      "const ${1} => ({ type: ${1/([a-z]*)(([A-Z])+([a-z]+))?/${1:/upcase}${2:+_}$3${4:/upcase}/g} $0});"
     ]
   },
   "redux const action_creator": {
@@ -445,12 +418,72 @@
     ],
     "description": "Material ui functional component"
   },
+  // JSDOC types //
+  "jsdoc actions definition": {
+    "prefix": "jdacts",
+    "body": [
+      "/**",
+      " * @typedef {A<$1, void>",
+      " * |A<$2, void>",
+      " * |A<$3, void>",
+      " * |A<$4, {error: any}>} Actions",
+      " * */"
+    ],
+    "description": "jsdoc actions definition for typescript annotation"
+  },
+  "jsdoc props": {
+    "prefix": "jdprops",
+    "body": [
+      "/** @typedef {Object} Props",
+      " * @property {${string}} $1",
+      " * @property {${number}} $2",
+      " * @property {${function}} $3",
+      " */",
+      "",
+      "/** @param {Props} props **/",
+    ],
+    "description": "generate jsdoc anotation for props"
+  },
   "import type from react": {
     "body": "import type { $Node } from 'react'",
     "description": "Imports a type from react",
     "prefix": "imtr"
   },
+  "jsdoc type ": {
+    "prefix": "jdtype",
+    "body": "/** @type { $0 }*/",
+    "description": "Basic jsdoc type"
+  },
+  "jsdoc function type definition": {
+    "prefix": "jdtfun",
+    "body": "/** @type { (args: $1) => $0 }*/",
+    "description": "function type cast"
+  },
+  "jsdoc type definition": {
+    "prefix": "jdtdef",
+    "body": "/** @typedef {$1} $0*/",
+    "description": "jsdoc type definition"
+  },
+  "jsdoc type definition import": {
+    "prefix": "jdtdefi",
+    "body": "/** @typedef {typeof import('./$1').default} $0*/",
+    "description": "jsdoc type definition import"
+  },
   // PENTO //
+  "spring select": {
+    "prefix": "sprsel",
+    "body": [
+      "        <Select",
+      "          label={__('labels.frequency')}",
+      "          onChange={setScheduleType}",
+      "          value={scheduleType}",
+      "        >",
+      "          <Option value=\"monthly\">Monthly</Option>",
+      "          <Option value=\"forthnigthly\">Forthnightly</Option>",
+      "        </Select"
+    ],
+    "description": "basic spring select statement"
+  },
   "spring component": {
     "description": "spring component with everything",
     "prefix": "scomp",
@@ -464,7 +497,7 @@
       "  className?: string,",
       "}",
       "",
-      "export function ${ name }({ size, className }: ${name}Props) {",
+      "export function ${name}({ size, className }: ${name}Props) {",
       "  const classes = [className].join(' ').trim()",
       "  return <div className={classes}></div>",
       "}",
@@ -521,5 +554,18 @@
     "prefix": "stpan",
     "description": "Do not show panel for one specifis story",
     "body": "$0.stories = { parameters: { showPanel: false } }"
+  },
+  "translator": {
+    "body": "import type { translator } from 'components/polyglotProvider",
+    "prefix": "ityt"
+  },
+  // Flow
+  "type props": {
+    "prefix": "typp",
+    "body": [
+      "type $1Props = {",
+      "  $2: $0,",
+      "}"
+    ]
   }
 }
